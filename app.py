@@ -39,8 +39,8 @@ def main():
         st.write(f"**Confidence:** {confidence:.2f}%")
 
         st.write("### All Class Probabilities:")
-        for i, class_name in enumerate(CLASS_NAMES):
-            st.write(f"{class_name}: {preds[0][i]*100:.2f}%")
+        for i in range(min(len(CLASS_NAMES), preds.shape[1])):
+            st.write(f"{CLASS_NAMES[i]}: {preds[0][i]*100:.2f}%")
 
 if __name__ == "__main__":
     main()
