@@ -2,12 +2,13 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 import numpy as np
-
+from keras.models import load_model
+from my_custom_objects import MyCustomLayer
 # Load model
-model = tf.keras.models.load_model("weather_mobilenetv2.h5")
+model = load_model("weather_mobilenetv2.h5", custom_objects={"MyCustomLayer": MyCustomLayer})
 class_names = ['Cloudy', 'Fog', 'Rain', 'Shine', 'Sunrise']
 
-st.title("Weather Image Classifier 🌦️")
+st.title("Weather Image Classifier ")
 st.markdown("Upload an image and let the AI predict the weather condition.")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
