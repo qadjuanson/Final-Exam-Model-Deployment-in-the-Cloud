@@ -5,7 +5,7 @@ import numpy as np
 
 # Constants
 IMG_SIZE = (150, 150)
-CLASS_NAMES = ['class0', 'class1', 'class2', 'class3', 'class4', 'class5']  # Replace with your actual class names in order
+CLASS_NAMES = ['Cloudy', 'Rain', 'Shine', 'Sunrise']  
 
 @st.cache_resource
 def load_trained_model():
