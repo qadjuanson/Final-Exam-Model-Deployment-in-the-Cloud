@@ -3,9 +3,9 @@ import tensorflow as tf
 from PIL import Image
 import numpy as np
 from keras.models import load_model
-from my_custom_objects import MyCustomLayer
+
 # Load model
-model = load_model("weather_mobilenetv2.h5", custom_objects={"MyCustomLayer": MyCustomLayer})
+model = tf.keras.models.load_model("weather_mobilenetv2.h5")
 class_names = ['Cloudy', 'Fog', 'Rain', 'Shine', 'Sunrise']
 
 st.title("Weather Image Classifier ")
