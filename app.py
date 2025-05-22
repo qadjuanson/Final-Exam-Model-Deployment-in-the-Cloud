@@ -3,24 +3,20 @@ import tensorflow as tf
 from PIL import Image
 import numpy as np
 
-# Load model
-model = tf.keras.models.load_model("weather_mobilenetv2.keras")
-class_names = ['Cloudy', 'Fog', 'Rain', 'Shine', 'Sunrise']
+model = tf.keras.models.load_model("weather_model.h5")
+class_names = ['cloudy', 'rain', 'shine', 'sunrise', 'fog', 'snow']
 
-st.title("Weather Image Classifier ")
-st.markdown("Upload an image and let the AI predict the weather condition.")
+def preprocess_image(image):
+    image = image.resize((150, 150))
+    img_array = np.array(image) / 255.0
+    return np.expand_dims(img_array, axis=0)
 
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+st.title("Weather Image Classifier")
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
-if uploaded_file is not None:
-    image = Image.open(uploaded_file).convert('RGB')
-    st.image(image, caption="Uploaded Image", use_column_width=True)
-
-    img = image.resize((224, 224))
-    img_array = np.array(img) / 255.0
-    img_array = np.expand_dims(img_array, axis=0)
-
-    predictions = model.predict(img_array)
-    predicted_class = class_names[np.argmax(predictions)]
-
-    st.success(f"Prediction: **{predicted_class}**")
+if uploaded_file:
+    image = Image.open(uploaded_file)
+    st.image(image, caption='Uploaded Image', use_column_width=True)
+    img_tensor = preprocess_image(image)
+    prediction = model.predict(img_tensor)
+    st.write(f"Prediction: **{class_names[np.argmax(prediction)]}**")
