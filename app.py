@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 
 # Load model
-model = tf.keras.models.load_model("weather_mobilenetv2.h5")
+model = tf.keras.models.load_model("weather_mobilenetv2.keras")
 class_names = ['Cloudy', 'Fog', 'Rain', 'Shine', 'Sunrise']
 
 st.title("Weather Image Classifier ")
