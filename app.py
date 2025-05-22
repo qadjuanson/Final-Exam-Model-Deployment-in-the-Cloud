@@ -9,7 +9,7 @@ CLASS_NAMES = ['class0', 'class1', 'class2', 'class3', 'class4', 'class5']  # Re
 
 @st.cache_resource
 def load_trained_model():
-    model = load_model("best_model_small.h5")
+    model = load_model("best_model_small.keras")
     return model
 
 def preprocess_image(image):
